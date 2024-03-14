@@ -2,8 +2,10 @@ package com.projects.facebook.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "users")
 public class UserEntity {
     @Id
@@ -20,6 +22,15 @@ public class UserEntity {
     @NotBlank(message = "Phone cannot be empty or start space")
     @Pattern(regexp = "^01[0-2|5|9]\\d{8}$", message = "Phone number must be 11 digits and start with 01 followed by 0, 1, 2, 5, or 9")
     private String phone;
+
+
+    public UserEntity(String address) {
+        this.address = address;
+    }
+
+    @NotBlank(message = "Address cannot be empty or start with a space")
+    @Pattern(regexp = "^.{10,}$", message = "Address must be at least 10 characters long")
+    private String address;
 
     @NotBlank(message = "Email cannot be empty or start space")
     @Pattern(regexp = "^(.+)@(.+)$", message = "Email should be valid")
@@ -88,6 +99,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }
