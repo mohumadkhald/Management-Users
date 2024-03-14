@@ -86,9 +86,10 @@ public class UserServiceImpl implements UserService{
         // Update user fields
         userEntity.setFname(user.getFname());
         userEntity.setLname(user.getLname());
-        userEntity.setEmail(user.getEmail());
+        userEntity.setAddress(user.getAddress());
         userEntity.setPhone(user.getPhone());
-
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPassword(user.getPassword());
         // Save the updated user
         userRepo.save(userEntity);
 
