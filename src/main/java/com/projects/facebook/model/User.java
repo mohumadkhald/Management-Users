@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 public class User {
-    private Integer id;
     @NotBlank(message = "First name cannot be empty or start space")
     @Pattern(regexp = "^[^0-9]{3,}$", message = "First name must be at least 3 characters long and cannot contain numbers")
     private String fname;
