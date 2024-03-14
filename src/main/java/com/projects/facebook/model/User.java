@@ -1,13 +1,9 @@
-package com.projects.facebook.entity;
+package com.projects.facebook.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
-@Entity
-@Table(name = "users")
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class User {
     private Integer id;
     @NotBlank(message = "First name cannot be empty or start space")
     @Pattern(regexp = "^[^0-9]{3,}$", message = "First name must be at least 3 characters long and cannot contain numbers")
@@ -29,8 +25,10 @@ public class UserEntity {
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$", message = "Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long")
     private String password;
 
-    public UserEntity(Integer id, String fname, String lname, String phone, String email, String password) {
-        this.id = id;
+    public User() {
+    }
+
+    public User( String fname, String lname, String phone, String email, String password) {
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
@@ -38,17 +36,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public UserEntity() {
-
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFname() {
         return fname;
